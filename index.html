@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Chat </title>
+<link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+	<img src="chaticon.png" style="width:4%;" /><br>
+	
+	<div class="chat">
+    	<input tabindex="text" class="chat-name"
+        placeholder="Enter your name">
+        <div class="chat-messages">
+       
+        </div>
+        <textarea class="chat-textarea" placeholder="Type your message"></textarea>
+		
+        <div class="chat-status">Status: <span style="color:#DD2695;font-weight:bold;">Idle</span></div>
+    </div>
+    
+    
+    <script src="http://127.0.0.1:8080/socket.io/socket.io.js"></script>
+    
+    <script>
+		(function(){
+		
+			var getNode = function(s){
+				var returnVar  =document.querySelector(s);
+				
+				return returnVar;	
+			}
+			
+			
+			
+			//Get required nodes
+			
+			chatname = getNode('.chat-name');
+			textarea = getNode('.chat-textarea');
+			statusNode = getNode('.chat-status span');
+			statusDefault = statusNode.innerHTML;
+			messagesVar = getNode('.chat-messages');
+			setStatus = function(s){
+				statusNode.textContent = s;
+				
+				if(s !== statusDefault){
+					var delay = setTimeout(function(){
+						setStatus(statusDefault);
+					}, 4000);//sets the status back to idle after 4 secs
+				}
+			}
+			
+			setStatus('Initializing');//the status at the beginning (optional)
+			
+			console.log("Status " + statusDefault);
+			
+			try{
+				var socket = io.connect('http://127.0.0.1:8080');
+			}catch(err){
+				console.log("Not connected!");
+			}
+			
+			if(socket !== undefined){
+				
+				
+				//Listen for Output
+				socket.on('output', function(data){
+					if(data.length){//if there is data
+						//Loop through the results
+						
+						for(var x =0; x < data.length; x++){
+							var message = document.createElement('div');//create a div with class .chat-message
+							message.setAttribute('class','chat-message');
+							var namestf=data[x].name;
+							var result=namestf.bold();
+							message.innerHTML = result + " : " + data[x].message;
+							
+							// Append 
+							messagesVar.appendChild(message);
+							messagesVar.insertBefore(message, messagesVar.firstChild);
+						}
+					}
+				});
+				
+				//Listen for a status
+				
+				socket.on('status', function(data){
+					setStatus((typeof data === 'object')?data.message :data);
+					
+				
+				 if(data.clear === true){
+					 textarea.value = '';
+				 }
+				
+				});
+				
+				console.log('Connection Succeeded');
+				
+				//Listen for keydown
+				textarea.addEventListener('keydown', function(event){
+						setStatus('Typing...');
+						var self = this,
+						name = chatname.value;
+							
+							
+							if(event.which === 13 && event.shiftKey === false ){
+								
+								socket.emit('input', 
+								{
+									name:name,
+									message:self.value});
+								event.preventDefault();
+							}
+							
+							
+				});
+				
+				
+			}
+			
+		})();
+	</script>
+</body>
+</html>
