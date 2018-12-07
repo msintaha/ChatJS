@@ -1,14 +1,13 @@
 'use strict';
 
 (function() {
-  
   let chatname = document.querySelector('.chat-name'),
     textarea = document.querySelector('.chat-textarea'),
     statusNode = document.querySelector('.chat-status span'),
     statusDefault = statusNode.innerHTML,
     allMessages = document.querySelector('.chat-messages');
     
-  let  setStatus = function (s) {
+  let setStatus = function (s) {
       statusNode.textContent = s;
       
       if(s !== statusDefault){
@@ -19,8 +18,6 @@
     };
   
   setStatus('Initializing...');
-  
-  console.log('Status ' + statusDefault);
   
   try {
     let socket = io.connect('http://127.0.0.1:8080');
@@ -69,5 +66,4 @@
   } catch (err) {
     console.log('Not connected!');
   }
-  
 })();
