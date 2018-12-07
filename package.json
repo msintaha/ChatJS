@@ -1,0 +1,25 @@
+{
+  "name": "nodejs_chat",
+  "version": "1.0.0",
+  "description": "chat application with node js",
+  "main": "server.js",
+  "dependencies": {
+    "mongodb": "^2.2.33",
+    "socket.io": "^1.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msintaha/nodeJS_chat.git"
+  },
+  "author": "Mifta Sintaha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/msintaha/nodeJS_chat/issues"
+  },
+  "homepage": "https://github.com/msintaha/nodeJS_chat#readme"
+}

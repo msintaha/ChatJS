@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Chat </title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+	<img src="assets/chaticon.png" style="width:50px;" /><br>
+	
+	<div class="chat">
+    	<input tabindex="text" class="chat-name"
+        placeholder="Enter your name">
+        <div class="chat-messages">
+       
+        </div>
+        <textarea class="chat-textarea" placeholder="Type your message"></textarea>
+		
+        <div class="chat-status">Status: <span style="color:#DD2695;font-weight:bold;">Idle</span></div>
+    </div>
+    
+    <script src="http://127.0.0.1:8080/socket.io/socket.io.js"></script>
+    
+    <script src="./client.js"></script>
+</body>
+</html>
