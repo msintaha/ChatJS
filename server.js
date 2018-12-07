@@ -14,8 +14,8 @@ mongo.connect('mongodb://127.0.0.1/chat', function (err, db) {
   client.on('connection', function (socket) {
     const sendStatus = function (statusMsg) {
       socket.emit('status', statusMsg);
-    };
-
+	};
+	
 	getAllMessages(db, socket);
 
     socket.on('input', function (data) {
