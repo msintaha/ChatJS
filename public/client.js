@@ -20,7 +20,7 @@
   
   setStatus('Initializing...');
   
-  console.log("Status " + statusDefault);
+  console.log('Status ' + statusDefault);
   
   try {
     let socket = io.connect('http://127.0.0.1:8080');
@@ -34,7 +34,7 @@
             message.setAttribute('class', 'chat-message');
             let user = data[x].name;
             const result = user.bold();
-            message.innerHTML = result + " : " + data[x].message;
+            message.innerHTML = result + ' : ' + data[x].message;
   
             allMessages.appendChild(message);
             allMessages.insertBefore(message, allMessages.firstChild);
@@ -67,7 +67,7 @@
       });
     }
   } catch (err) {
-    console.log("Not connected!");
+    console.log('Not connected!');
   }
   
 })();

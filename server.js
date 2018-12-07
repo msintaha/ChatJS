@@ -31,7 +31,7 @@ mongo.connect('mongodb://127.0.0.1/chat', function (err, db) {
         db.collection('messages').insert({ name, message }, function () { 
           client.emit('output', [data]);
           sendStatus({
-            message: "Message sent",
+            message: 'Message sent',
             clear: true
           });
         });
