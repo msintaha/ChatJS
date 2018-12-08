@@ -5,7 +5,7 @@
     textarea = document.querySelector('.chat-textarea'),
     statusNode = document.querySelector('.chat-status span'),
     statusDefault = statusNode.innerHTML,
-    allMessages = document.querySelector('.chat-messages');
+    chatMessages = document.querySelector('.chat-messages');
 
   let setStatus = function (s) {
     statusNode.textContent = s;
@@ -27,14 +27,13 @@
       socket.on('output', function (data) {
         if (data.length) {
           for (let x = 0; x < data.length; x++) {
-            let message = document.createElement('div');
+            const message = document.createElement('div');
             message.setAttribute('class', 'chat-message');
-            let user = data[x].name;
-            const result = user.bold();
-            message.innerHTML = result + ' : ' + data[x].message;
+            const user = data[x].name.bold();
+            message.innerHTML = user + ' : ' + data[x].message;
 
-            allMessages.appendChild(message);
-            allMessages.insertBefore(message, allMessages.firstChild);
+            chatMessages.appendChild(message);
+            chatMessages.insertBefore(message, chatMessages.firstChild);
           }
         }
       });
@@ -47,23 +46,20 @@
         }
       });
 
-      console.log('Connection Succeeded');
-
       //Listen for keydown
       textarea.addEventListener('keydown', function (event) {
         setStatus('Typing...');
-        const self = this,
-          name = chatname.value;
+        const name = chatname.value;
         if (event.which === 13 && event.shiftKey === false) {
           socket.emit('input', {
             name: name,
-            message: self.value
+            message: this.value
           });
           event.preventDefault();
         }
       });
     }
   } catch (err) {
-    console.log('Not connected!');
+    console.log('Not connected!', err);
   }
 })();
