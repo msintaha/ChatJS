@@ -4,6 +4,7 @@
   "description": "A simple chat application with ExpressJS, mongo and sockets",
   "main": "server.js",
   "dependencies": {
+    "express": "^4.16.4",
     "mongodb": "^2.2.33",
     "socket.io": "^1.2.1"
   },
