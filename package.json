@@ -16,12 +16,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/msintaha/nodeJS_chat.git"
+    "url": "git+https://github.com/msintaha/ChatJS.git"
   },
   "author": "Mifta Sintaha",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/msintaha/nodeJS_chat/issues"
+    "url": "https://github.com/msintaha/ChatJS/issues"
   },
-  "homepage": "https://github.com/msintaha/nodeJS_chat#readme"
+  "homepage": "https://github.com/msintaha/ChatJS#readme"
 }

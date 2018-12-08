@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 mongo.connect('mongodb://127.0.0.1/chat', function (err, db) {
 	if (err) { throw err; }
 	client.on('connection', function (socket) {
-	const sendStatus = function (statusMsg) {
+		const sendStatus = function (statusMsg) {
 			socket.emit('status', statusMsg);
 		};
 
