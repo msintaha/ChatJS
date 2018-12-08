@@ -1,11 +1,11 @@
 'use strict';
 
 const mongo = require('mongodb').MongoClient,
- 	client = require('socket.io').listen(8080).sockets,
+	client = require('socket.io').listen(8080).sockets,
 	path = require('path'),
 	express = require('express'),
+	app = express();
 
-app = express();
 app.listen(3000)
 app.use(express.static(path.join(__dirname, 'public')));
 
